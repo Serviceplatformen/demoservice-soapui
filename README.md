@@ -14,14 +14,14 @@ This file is targeted at developers who implement integrations to Serviceplatfor
 
 ### PREREQUISITES
 
- * SOAP UI 5.2.1 or higher is installed.
+ * SoapUI 5.2.1 or higher is installed.
  
-The client is fully configured and should work as is. The client is tested with SOAP UI.
+The client is fully configured and should work as is. The client is tested with SoapUI.
 
 ### CONFIG
 
 1.	Configure keystore
-In SOAP UI go to:
+In SoapUI go to:
 File -> Preferences -> SSL settings
 -	Key Store field. Specify the path to demoservice.jks located in same folder as this document. (e.g -
 `<Folder placement>\demoservice.jks`
@@ -51,14 +51,15 @@ the password accordingly.
 
 There are couple of files in this archive:
 
-- `README.md` - this file.
+- `readme.md` - this file.
 - `DemoService-exttest-soapui-project.xml` - xml file represents SOAP UI project and can be imported by that tool.
 - `demoservice.jks` - Certificate-file as descriped in config.docx
+- `resource\*` - images used for this readme.
 
 The project contains two requests:
 - `callDemoServcieWithInvocationContext`
 - `callDemoServiceWithAuthorityContext`
 
 ### SIDENOTE
-The SOAPUI project DOES NOT contain the security model for the token. We instead refer to the JAVA Client. 
-The two other security models are covered in the SOAPUI project.
+The SoapUI project does not contain an example request for the token security model. We instead refer to the Java client which can be found as a separate Serviceplatformen repository here on GitHub. 
+The two other security models are covered in the SoapUI project.
