@@ -21,6 +21,7 @@ The client is fully configured and should work as is. The client is tested with 
 ### CONFIG
 
 1.	Configure keystore
+
 In SoapUI go to:
 File -> Preferences -> SSL settings
 -	Key Store field. Specify the path to demoservice.jks located in same folder as this document. (e.g -
@@ -29,7 +30,7 @@ File -> Preferences -> SSL settings
 
 ![alt tag](image/Certificate.png)
 
-2.	Set request’s URL to - https://exttest.serviceplatformen.dk/service/SP/Demo/1
+2.	Set the request URL to - https://exttest.serviceplatformen.dk/service/SP/Demo/1
 
 ![alt tag](image/Endpoint.png)
 
@@ -47,16 +48,16 @@ but for Keystore-Explorer do the following:
 4. Choose the key type you are importing.
 ![alt tag](image/type.png)
 5. Set a password and make sure the password for the key pair is the same as the password for the entire Java KeyStore file.
+
 ![alt tag](image/password.png)
-   If you have changed the demoservice.jks password, set the new password in SSL settings as descriped in CONFIG (above):
+
+If you have changed the demoservice.jks password, set the new password in SSL settings as described in CONFIG (above):
 
 ### CONTENT
 
-There are couple of files in this archive:
-
 - `readme.md` - this file.
-- `DemoService-exttest-soapui-project.xml` - xml file represents SOAP UI project and can be imported by that tool.
-- `demoservice.jks` - Certificate-file as descriped in CONFIG (above).
+- `DemoService-exttest-soapui-project.xml` - Represents the SOAP UI project and can be imported by that tool.
+- `demoservice.jks` - Certificate-file as described in CONFIG.
 - `image\*` - images used for this readme.
 
 The project contains two requests:
