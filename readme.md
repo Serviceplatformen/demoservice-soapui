@@ -22,17 +22,16 @@ The client is fully configured and should work as is. The client is tested with 
 
 1.	Configure keystore
 
-In SoapUI go to:
-File -> Preferences -> SSL settings
--	Key Store field. Specify the path to demoservice.jks located in same folder as this document. (e.g -
-`<Folder placement>\demoservice.jks`
--	Password -  `wRFsRP63H3kNEhDU`
-
-![alt tag](image/Certificate.png)
+        In SoapUI go to:
+        File -> Preferences -> SSL settings
+        -	Key Store field. Specify the path to demoservice.jks located in same folder as this document. (e.g - `<Folder placement>\demoservice.jks`)
+        -	Password -  `wRFsRP63H3kNEhDU`
+        
+                ![alt tag](image/Certificate.png)
 
 2.	Set the request URL to - https://exttest.serviceplatformen.dk/service/SP/Demo/1
 
-![alt tag](image/Endpoint.png)
+        ![alt tag](image/Endpoint.png)
 
 ### CHANGE CERTIFICATE
 
@@ -43,15 +42,19 @@ but for Keystore-Explorer do the following:
 1. Open `demoservice.jks` for the relevant client with KeyStore Explorer or your favorite JKS manipulation tool.
 2. Remove the existing private-public key pair.
 3. Import your own key pair.
-* Tools -> Import Key Pair
-![alt tag](image/import.png)
-4. Choose the key type you are importing.
-![alt tag](image/type.png)
-5. Set a password and make sure the password for the key pair is the same as the password for the entire Java KeyStore file.
+    3. Tools -> Import Key Pair
 
-![alt tag](image/password.png)
+        ![alt tag](image/import.png)
 
-If you have changed the demoservice.jks password, set the new password in SSL settings as described in CONFIG (above):
+    4. Choose the key type you are importing.
+
+        ![alt tag](image/type.png)
+
+    5. Set a password and make sure the password for the key pair is the same as the password for the entire Java KeyStore file.
+    
+        ![alt tag](image/password.png)
+
+        If you have changed the demoservice.jks password, set the new password in SSL settings as described in CONFIG (above):
 
 ### CONTENT
 
