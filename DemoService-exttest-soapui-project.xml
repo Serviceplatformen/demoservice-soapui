@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="01c945d5-d8bf-4c4c-8f4f-970134dc11b9" activeEnvironment="Default" name="DemoService_exttest" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="047c795f-4c28-4d96-8187-f2d1847fcfae" wsaVersion="NONE" name="DemoBinding" type="wsdl" bindingName="{http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/}DemoBinding" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/vicbu/Documents/Kombit/ksp_dev/optional/DemoService/contracts/target/contracts/wsdl/context/DemoService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\wsdl\context\DemoService.wsdl"><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\wsdl\context\DemoService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/" name="DemoService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:spf="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/">
+  <wsdl:import namespace="http://serviceplatformen.dk/xml/wsdl/soap11/Security/Policy" location="policies.wsdl"/>
+  <wsdl:import namespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" location="../../sp/ServiceplatformFaultMessage_1.wsdl"/>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/">
+      <xsd:include schemaLocation="../../DemoServiceMsg.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="callDemoServiceRequestMessage">
+    <wsdl:part name="request" element="tns:CallDemoServiceRequest"/>
+  </wsdl:message>
+  <wsdl:message name="callDemoServiceResponseMessage">
+    <wsdl:part name="response" element="tns:CallDemoServiceResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="DemoPortType">
+    <wsdl:operation name="callDemoService">
+      <wsdl:input message="tns:callDemoServiceRequestMessage"/>
+      <wsdl:output message="tns:callDemoServiceResponseMessage"/>
+      <wsdl:fault name="ServiceplatformFault" message="spf:ServiceplatformFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DemoBinding" type="tns:DemoPortType">
+    <wsp:PolicyReference URI="policies.wsdl#ServiceplatformBindingPolicy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="callDemoService">
+      <soap:operation soapAction="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/callDemoService"/>
+      <wsdl:input>
+        <soap:body parts="request" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="response" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceplatformFault">
+        <soap:fault name="ServiceplatformFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DemoService">
+    <wsdl:port name="DemoPort" binding="tns:DemoBinding">
+      <soap:address location="https://localhost:8080/service/SP/Demo/1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\wsdl\context\policies.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/Security/Policy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+  <wsp:Policy Name="policies.wsdl#ServiceplatformBindingPolicy">
+    <wsp:ExactlyOne>
+      <wsp:PolicyReference URI="#ClientContextTransportBindingPolicy"/>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="ServiceplatformBindingPolicy">
+    <wsp:ExactlyOne>
+      <wsp:PolicyReference URI="#ClientContextTransportBindingPolicy"/>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="ClientContextTransportBindingPolicy">
+    <sp:TransportBinding>
+      <wsp:Policy>
+        <sp:TransportToken>
+          <wsp:Policy>
+            <sp:HttpsToken>
+              <wsp:Policy>
+                <sp:RequireClientCertificate/>
+              </wsp:Policy>
+            </sp:HttpsToken>
+          </wsp:Policy>
+        </sp:TransportToken>
+        <sp:AlgorithmSuite>
+          <wsp:Policy>
+            <sp:Basic256Sha256/>
+          </wsp:Policy>
+        </sp:AlgorithmSuite>
+      </wsp:Policy>
+    </sp:TransportBinding>
+  </wsp:Policy>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\sp\ServiceplatformFaultMessage_1.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ServiceplatformFaultMessage" targetNamespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" xmlns:tns="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/">
+      <xsd:include schemaLocation="ServiceplatformFault_1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ServiceplatformFault">
+    <wsdl:part name="error" element="tns:ServiceplatformFault"/>
+  </wsdl:message>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\sp\ServiceplatformFault_1.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" elementFormDefault="qualified" version="1.0" xmlns:tns="http://serviceplatformen.dk/xml/schemas/ServiceplatformFault/1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="ServiceplatformFault" type="tns:ServiceplatformFaultType"/>
+  <xsd:complexType name="ServiceplatformFaultType">
+    <xsd:sequence>
+      <xsd:element name="ErrorList" type="tns:ErrorListType" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ErrorListType">
+    <xsd:sequence>
+      <xsd:element name="Error" type="tns:ErrorType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ErrorType">
+    <xsd:sequence>
+      <xsd:element name="ErrorCode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="ErrorText" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\DemoServiceMsg.xsd</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/" xmlns:tns="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:invctx="http://serviceplatformen.dk/xml/schemas/InvocationContext/1/" xmlns:authctx="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" xmlns:callctx="http://serviceplatformen.dk/xml/schemas/CallContext/1/">
+  <xsd:import namespace="http://serviceplatformen.dk/xml/schemas/CallContext/1/" schemaLocation="sp/CallContext_1.xsd"/>
+  <xsd:import namespace="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" schemaLocation="sp/AuthorityContext_1.xsd"/>
+  <xsd:import namespace="http://serviceplatformen.dk/xml/schemas/InvocationContext/1/" schemaLocation="sp/InvocationContext_1.xsd"/>
+  <xsd:complexType name="CallDemoServiceRequestType">
+    <xsd:sequence>
+      <xsd:element ref="callctx:CallContext" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="authctx:AuthorityContext" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="invctx:InvocationContext" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="messageString" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CallDemoServiceResponseType">
+    <xsd:sequence>
+      <xsd:element name="responseString" type="xsd:string" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="CallDemoServiceRequest" type="tns:CallDemoServiceRequestType"/>
+  <xsd:element name="CallDemoServiceResponse" type="tns:CallDemoServiceResponseType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\sp\CallContext_1.xsd</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://serviceplatformen.dk/xml/schemas/CallContext/1/" xmlns:tns="http://serviceplatformen.dk/xml/schemas/CallContext/1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="CallContext" type="tns:CallContextType"/>
+  <xsd:complexType name="CallContextType">
+    <xsd:all>
+      <xsd:element ref="tns:OnBehalfOfUser" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="tns:CallersServiceCallIdentifier" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="tns:AccountingInfo" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="OnBehalfOfUser" type="tns:OnBehalfOfUserType"/>
+  <xsd:simpleType name="OnBehalfOfUserType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="CallersServiceCallIdentifier" type="tns:CallersServiceCallIdentifierType"/>
+  <xsd:simpleType name="CallersServiceCallIdentifierType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="AccountingInfo" type="tns:AccountingInfoType"/>
+  <xsd:simpleType name="AccountingInfoType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\sp\AuthorityContext_1.xsd</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" xmlns:tns="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="AuthorityContext" type="tns:AuthorityContextType"/>
+  <xsd:complexType name="AuthorityContextType">
+    <xsd:all>
+      <xsd:element name="MunicipalityCVR" type="tns:CVRNumber" minOccurs="1" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:simpleType name="CVRNumber">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\Users\vicbu\Documents\Kombit\ksp_dev\optional\DemoService\contracts\target\contracts\sp\InvocationContext_1.xsd</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" version="1.0" targetNamespace="http://serviceplatformen.dk/xml/schemas/InvocationContext/1/" xmlns:tns="http://serviceplatformen.dk/xml/schemas/InvocationContext/1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="InvocationContext" type="tns:InvocationContextType"/>
+  <xsd:complexType name="InvocationContextType">
+    <xsd:all>
+      <xsd:element ref="tns:ServiceAgreementUUID" minOccurs="1" maxOccurs="1"/>
+      <xsd:element ref="tns:UserSystemUUID" minOccurs="1" maxOccurs="1"/>
+      <xsd:element ref="tns:UserUUID" minOccurs="1" maxOccurs="1"/>
+      <xsd:element ref="tns:OnBehalfOfUser" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="tns:ServiceUUID" minOccurs="1" maxOccurs="1"/>
+      <xsd:element ref="tns:CallersServiceCallIdentifier" minOccurs="0" maxOccurs="1"/>
+      <xsd:element ref="tns:AccountingInfo" minOccurs="0" maxOccurs="1"/>
+    </xsd:all>
+  </xsd:complexType>
+  <xsd:element name="ServiceAgreementUUID" type="tns:ServiceAgreenentUUIDtype"/>
+  <xsd:simpleType name="ServiceAgreenentUUIDtype">
+    <xsd:restriction base="tns:UUIDtype"/>
+  </xsd:simpleType>
+  <xsd:element name="ServiceUUID" type="tns:ServiceUUIDtype"/>
+  <xsd:simpleType name="ServiceUUIDtype">
+    <xsd:restriction base="tns:UUIDtype"/>
+  </xsd:simpleType>
+  <xsd:element name="UserSystemUUID" type="tns:UserSystemUUIDtype"/>
+  <xsd:simpleType name="UserSystemUUIDtype">
+    <xsd:restriction base="tns:UUIDtype"/>
+  </xsd:simpleType>
+  <xsd:element name="UserUUID" type="tns:UserUUIDtype"/>
+  <xsd:simpleType name="UserUUIDtype">
+    <xsd:restriction base="tns:UUIDtype"/>
+  </xsd:simpleType>
+  <xsd:element name="OnBehalfOfUser" type="tns:OnBehalfOfUserType"/>
+  <xsd:simpleType name="OnBehalfOfUserType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="CallersServiceCallIdentifier" type="tns:CallersServiceCallIdentifierType"/>
+  <xsd:simpleType name="CallersServiceCallIdentifierType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:element name="AccountingInfo" type="tns:AccountingInfoType"/>
+  <xsd:simpleType name="AccountingInfoType">
+    <xsd:restriction base="xsd:string">
+      <xsd:maxLength value="255"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="UUIDtype">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://localhost:8080/service/SP/Demo/1</con:endpoint></con:endpoints><con:operation id="87f75e51-f493-419e-a39d-b974a1937ce4" isOneWay="false" action="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/callDemoService" name="callDemoService" bindingOperationName="callDemoService" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1b29bb73-1e51-4c07-a9db-2a6df4c93fcb" name="callDemoServiceWithInvocationContext"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://exttest.serviceplatformen.dk/service/SP/Demo/1</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:CallDemoServiceRequest xmlns:ns2="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/" xmlns="http://serviceplatformen.dk/xml/schemas/InvocationContext/1/" xmlns:ns3="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" xmlns:ns4="http://serviceplatformen.dk/xml/schemas/CallContext/1/">
+      <InvocationContext>
+        <ServiceAgreementUUID>5037d099-29bd-421a-b746-d2f4772e5da5</ServiceAgreementUUID>
+        <UserSystemUUID>17b22dc2-3f80-11e2-a32b-d4bed98c63db</UserSystemUUID>
+        <UserUUID>97782c1e-ec6a-4fcf-9c6c-cb030948d1d5</UserUUID>
+        <OnBehalfOfUser>DemoServicePortType.test.uuid</OnBehalfOfUser>
+        <ServiceUUID>d8a062c0-27d1-11e6-b67b-9e71128cae77</ServiceUUID>
+        <CallersServiceCallIdentifier>DemoServicePortType.test.uuid</CallersServiceCallIdentifier>
+      </InvocationContext>
+      <ns2:messageString>Hello test_2</ns2:messageString>
+    </ns2:CallDemoServiceRequest>
+  </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/callDemoService"/><con:wsrmConfig version="1.2"/></con:call><con:call id="f334b7aa-24d1-4381-b6ca-d0e5c4735c10" name="callDemoServiceWithAuthorityContext"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://exttest.serviceplatformen.dk/service/SP/Demo/1</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:CallDemoServiceRequest xmlns:ns2="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/" xmlns="http://serviceplatformen.dk/xml/schemas/InvocationContext/1/" xmlns:ns3="http://serviceplatformen.dk/xml/schemas/AuthorityContext/1/" xmlns:ns4="http://serviceplatformen.dk/xml/schemas/CallContext/1/">
+      <ns3:AuthorityContext>
+        <ns3:MunicipalityCVR>29189846</ns3:MunicipalityCVR>
+      </ns3:AuthorityContext>
+      <ns4:CallContext>
+        <ns4:CallersServiceCallIdentifier>AuthorityContextAccessTestCaller</ns4:CallersServiceCallIdentifier>
+      </ns4:CallContext>
+      <ns2:messageString>Hello test1</ns2:messageString>
+    </ns2:CallDemoServiceRequest>
+  </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://serviceplatformen.dk/xml/wsdl/soap11/SP/Demo/1/callDemoService"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
