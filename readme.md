@@ -42,15 +42,16 @@ but for Keystore-Explorer do the following:
 1. Open `demoservice.jks` for the relevant client with KeyStore Explorer or your favorite JKS manipulation tool.
 2. Remove the existing private-public key pair.
 3. Import your own key pair.
-    3. Tools -> Import Key Pair
+
+    1. Tools -> Import Key Pair
 
         ![alt tag](image/import.png)
 
-    4. Choose the key type you are importing.
+    2. Choose the key type you are importing.
 
         ![alt tag](image/type.png)
 
-    5. Set a password and make sure the password for the key pair is the same as the password for the entire Java KeyStore file.
+    3. Set a password and make sure the password for the key pair is the same as the password for the entire Java KeyStore file.
     
         ![alt tag](image/password.png)
 
