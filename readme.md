@@ -27,7 +27,7 @@ The client is fully configured and should work as is. The client is tested with 
     -	Key Store field. Specify the path to demoservice.jks located in same folder as this document. (e.g - `<Folder placement>\demoservice.jks`)
     -	Password -  `wRFsRP63H3kNEhDU`
     
-            ![alt tag](image/Certificate.png)
+    ![alt tag](image/Certificate.png)
 
 2.	Set the request URL to - https://exttest.serviceplatformen.dk/service/SP/Demo/1
 
